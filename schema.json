@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FrontierFailure",
+  "type": "object",
+  "properties": {
+    "inputSet": { "type": "string", "description": "Input identifier (e.g. 18, 25, 10-17)" },
+    "termDensity": { "type": "string", "description": "Term density descriptor (High, Moderate, Low)" },
+    "domain": { "type": "string", "description": "Primary domain(s) of the prompt" },
+    "nestingLevel": { "type": "string", "description": "Human-readable nesting description (Flat, Complex, Ultra-Complex, …)" },
+    "errorType": { "type": "string", "description": "Primary error observed (Validator Timeout, Malformed JSON, etc.)" },
+    "delayEstimate": { "type": "string", "description": "Processing delay relative to baseline (e.g. ~5x, 25x)" },
+    "scrutinyRankings": { "type": "string" },
+    "rejectionRisk": { "type": "string" },
+    "keyTriggers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Sensitive tokens or vectors that triggered the failure"
+    },
+    "validatorInteraction": { "type": "string" },
+    "filteringBehavior": { "type": "string" },
+    "notes": { "type": "string" }
+  },
+  "required": ["inputSet", "errorType", "delayEstimate"]
+}

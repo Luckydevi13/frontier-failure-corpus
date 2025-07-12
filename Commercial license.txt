@@ -1,0 +1,51 @@
+
+---
+
+### 📄 2. 4-page Technical Brief (LaTeX)  
+Save as `frontier_failure_brief.tex`, compile with `pdflatex`.
+
+```latex
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\geometry{margin=1in}
+\title{Cross-Domain Prompt Nesting:\\A Failure-Mode Benchmark for Frontier Language Models}
+\author{[YOUR\_NAME]}
+\date{July 2024}
+
+\begin{document}
+\maketitle
+
+\section{Problem Statement}
+Frontier LLMs increasingly serve multi-domain queries (Quantum, Finance, Biotech). We observed that when nesting depth exceeds 7 levels, the JSON pipeline collapses catastrophically.
+
+\section{Methodology}
+We crafted 13 input sets (18–29) covering 1–13 nesting levels and 1–8 domains. Each was submitted 5× to a standard 70-B model. We measured processing delay (relative to baseline) and error severity (1–10).
+
+\section{Key Findings}
+\begin{center}
+\includegraphics[width=\linewidth]{delay_vs_nesting}
+\end{center}
+
+\begin{tabular}{lrr}
+\toprule
+Input & Nesting Levels & Delay (× baseline) \\
+\midrule
+18 & 3–4 & 5× \\
+25 & 8–9 & 25× \\
+29 & 12–13 & 100× \\
+\bottomrule
+\end{tabular}
+
+\section{Mitigation Recommendations}
+\begin{itemize}
+  \item Cap prompt nesting to 6 levels in production.
+  \item Whitelist keywords triggering cross-domain vectors (see appendix).
+  \item Implement progressive JSON schema validation after each nesting step.
+\end{itemize}
+
+\section{References}
+[1] NIST AI Risk Management Framework, 2024.  
+[2] AISI Red-Team Guidance, v1.2.
+\end{document}

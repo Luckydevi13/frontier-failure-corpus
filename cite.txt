@@ -1,0 +1,6 @@
+@techreport{frontier_failure_2024,
+  title={Cross-Domain Prompt Nesting: A Failure-Mode Benchmark for Frontier Language Models},
+  author={[YOUR_NAME]},
+  year={2024},
+  url={https://arxiv.org/abs/[XXXX.XXXXX]}
+}
